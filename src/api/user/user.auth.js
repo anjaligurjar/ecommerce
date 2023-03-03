@@ -34,7 +34,17 @@ next();
             next();
         }
     }
+const verifytokenauth=(req,rs,next)=>{
+    verifytokenauth(res,res,()=>{
+        if(req.user.id==req.param.id|| req.user.isAdmin){
+            res.send()
+        }
+        else{
+            next()
+        }
 
+    })
+}
 
 
 

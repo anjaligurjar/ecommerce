@@ -1,9 +1,10 @@
 const express=require("express")
+const { verifyTokenAndAdmin } = require("../user/user.auth")
 const product=require('./product.models')
 const router=express.Router()
 const app=express()
 
-router.get('/services',async(req,res)=>{
+router.post('/services',async(req,res)=>{
     const prodcut = new product({
         tilte: req.body.title,
         price: req.body.price,
@@ -18,6 +19,14 @@ router.get('/services',async(req,res)=>{
     res.send(200).json(details)
   
     
+})
+router.get('/',verifyTokenAndAdmin,async(req,res)=>{
+   const user= await product.UpdatedBYid(req.body)
+    res.send(200),json({
+        user:user
+    })
+   
+
 })
 
 
